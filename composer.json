@@ -1,8 +1,8 @@
 {
-    "name": "Belazor/zf2-rate-limit",
+    "name": "belazor/zf2-rate-limit",
     "description": "A Zend Framework 2 module that lets you define rate limits for your routes.",
     "keywords": ["zf2", "zend framework", "rate limit", "throttle", "API rate limit", "apigility"],
-    "homepage": "https://github.com/Belazor/zf2-rate-limit",
+    "homepage": "https://github.com/belazor/zf2-rate-limit",
     "type": "library",
     "license": "MIT",
     "authors": [
