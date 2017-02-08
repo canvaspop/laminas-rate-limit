@@ -1,18 +1,21 @@
 {
-    "name": "lhpalacio/zf2-rate-limit",
-    "description": "A Zend Framework 2 module that helps you to deal with rate limit.",
-    "keywords": ["rate limit", "throttle", "API rate limit", "apigility"],
+    "name": "Belazor/zf2-rate-limit",
+    "description": "A Zend Framework 2 module that lets you define rate limits for your routes.",
+    "keywords": ["zf2", "zend framework", "rate limit", "throttle", "API rate limit", "apigility"],
+    "homepage": "https://github.com/Belazor/zf2-rate-limit",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Luiz Henrique Gomes Palácio",
-            "email": "lhpalacio@outlook.com"
+            "name": "Fillip Hannisdal",
+            "email": "fillip@dragonbyte-tech.com",
+            "homepage": "https://www.dragonbyte-tech.com",
+            "role": "Developer"
         }
     ],
     "extra": {
         "zf": {
-            "module": "Lhpalacio\\Zf2RateLimit"
+            "module": "Belazor\\Zf2RateLimit"
         }
     },
     "require": {
@@ -25,7 +28,7 @@
     },
     "autoload": {
        "psr-4": {
-           "Lhpalacio\\Zf2RateLimit\\": "src/"
+           "Belazor\\Zf2RateLimit\\": "src/"
        }
     }
 }

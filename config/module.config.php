@@ -16,12 +16,12 @@
  * and is licensed under the MIT license.
  */
 
-use Lhpalacio\Zf2RateLimit\Mvc\RateLimitRequestListener;
-use Lhpalacio\Zf2RateLimit\Factory\RateLimitRequestListenerFactory;
-use Lhpalacio\Zf2RateLimit\Options\RateLimitOptions;
-use Lhpalacio\Zf2RateLimit\Factory\RateLimitOptionsFactory;
-use Lhpalacio\Zf2RateLimit\Service\RateLimitService;
-use Lhpalacio\Zf2RateLimit\Factory\RateLimitServiceFactory;
+use Belazor\Zf2RateLimit\Mvc\RateLimitRequestListener;
+use Belazor\Zf2RateLimit\Factory\RateLimitRequestListenerFactory;
+use Belazor\Zf2RateLimit\Options\RateLimitOptions;
+use Belazor\Zf2RateLimit\Factory\RateLimitOptionsFactory;
+use Belazor\Zf2RateLimit\Service\RateLimitService;
+use Belazor\Zf2RateLimit\Factory\RateLimitServiceFactory;
 
 return [
     'service_manager' => [

@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace Lhpalacio\Zf2RateLimit\Options;
+namespace Belazor\Zf2RateLimit\Options;
 
 use Zend\Stdlib\AbstractOptions;
 
@@ -24,7 +24,7 @@ use Zend\Stdlib\AbstractOptions;
  * RateLimitOptions
  *
  * @license MIT
- * @author Luiz Henrique Gomes Palácio <lhpalacio@outlook.com>
+ * @author Fillip Hannisdal <fillip@dragonbyte-tech.com>
  */
 class RateLimitOptions extends AbstractOptions
 {

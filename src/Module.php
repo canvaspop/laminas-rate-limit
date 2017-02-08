@@ -16,18 +16,18 @@
  * and is licensed under the MIT license.
  */
 
-namespace Lhpalacio\Zf2RateLimit;
+namespace Belazor\Zf2RateLimit;
 
 use Zend\Mvc\MvcEvent;
 use Zend\EventManager\EventInterface;
 use Zend\Mvc\Application;
-use Lhpalacio\Zf2RateLimit\Mvc\RateLimitRequestListener;
+use Belazor\Zf2RateLimit\Mvc\RateLimitRequestListener;
 
 /**
  * Module
  *
  * @license MIT
- * @author Luiz Henrique Gomes Palácio <lhpalacio@outlook.com>
+ * @author Fillip Hannisdal <fillip@dragonbyte-tech.com>
  */
 class Module
 {

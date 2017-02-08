@@ -16,21 +16,21 @@
  * and is licensed under the MIT license.
  */
 
-namespace Lhpalacio\Zf2RateLimit\Factory;
+namespace Belazor\Zf2RateLimit\Factory;
 
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Cache\StorageFactory;
-use Lhpalacio\Zf2RateLimit\Service\RateLimitService;
-use Lhpalacio\Zf2RateLimit\Options\RateLimitOptions;
+use Belazor\Zf2RateLimit\Service\RateLimitService;
+use Belazor\Zf2RateLimit\Options\RateLimitOptions;
 use RuntimeException;
 
 /**
  * RateLimitServiceFactory
  *
  * @license MIT
- * @author Luiz Henrique Gomes Palácio <lhpalacio@outlook.com>
+ * @author Fillip Hannisdal <fillip@dragonbyte-tech.com>
  */
 class RateLimitServiceFactory implements FactoryInterface
 {

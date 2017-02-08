@@ -16,10 +16,10 @@
  * and is licensed under the MIT license.
  */
 
-namespace Lhpalacio\Zf2RateLimit\Mvc;
+namespace Belazor\Zf2RateLimit\Mvc;
 
-use Lhpalacio\Zf2RateLimit\Exception\TooManyRequestsHttpException;
-use Lhpalacio\Zf2RateLimit\Service\RateLimitService;
+use Belazor\Zf2RateLimit\Exception\TooManyRequestsHttpException;
+use Belazor\Zf2RateLimit\Service\RateLimitService;
 use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventManagerInterface;
 use Zend\Mvc\MvcEvent;
@@ -33,7 +33,7 @@ use ZF\ApiProblem\ApiProblemResponse;
  * RateLimitRequestListener
  *
  * @license MIT
- * @author Luiz Henrique Gomes Palácio <lhpalacio@outlook.com>
+ * @author Fillip Hannisdal <fillip@dragonbyte-tech.com>
  */
 class RateLimitRequestListener extends AbstractListenerAggregate
 {

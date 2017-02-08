@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace Lhpalacio\Zf2RateLimit\Exception;
+namespace Belazor\Zf2RateLimit\Exception;
 
 use RuntimeException;
 
@@ -24,7 +24,7 @@ use RuntimeException;
  * TooManyRequestsHttpException
  *
  * @license MIT
- * @author Luiz Henrique Gomes Palácio <lhpalacio@outlook.com>
+ * @author Fillip Hannisdal <fillip@dragonbyte-tech.com>
  */
 class TooManyRequestsHttpException extends RuntimeException
 {

@@ -16,19 +16,19 @@
  * and is licensed under the MIT license.
  */
 
-namespace Lhpalacio\Zf2RateLimit\Service;
+namespace Belazor\Zf2RateLimit\Service;
 
-use Lhpalacio\Zf2RateLimit\Options\RateLimitOptions;
+use Belazor\Zf2RateLimit\Options\RateLimitOptions;
 use Zend\Cache\Storage\Adapter\AbstractAdapter;
 use Zend\Http\Response as HttpResponse;
 use Zend\Http\PhpEnvironment\RemoteAddress;
-use Lhpalacio\Zf2RateLimit\Exception\TooManyRequestsHttpException;
+use Belazor\Zf2RateLimit\Exception\TooManyRequestsHttpException;
 
 /**
  * RateLimitService
  *
  * @license MIT
- * @author Luiz Henrique Gomes Palácio <lhpalacio@outlook.com>
+ * @author Fillip Hannisdal <fillip@dragonbyte-tech.com>
  */
 class RateLimitService
 {
