@@ -13,6 +13,11 @@ return [
         'routes' => [],
 
         /**
+         * Lets you define separate limit / period settings per-route. Example: 'dragon-byte-tech.rpc.version-check' => ['limit' => 10, 'period' => 30]
+         */
+        'route_specific_limits' => [],
+
+        /**
          * This should be an array compatible with Zend Cache.
          */
         'storage' => [],

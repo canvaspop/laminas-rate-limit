@@ -76,8 +76,7 @@ class RateLimitRequestListener extends AbstractListenerAggregate
     public function onRoute(MvcEvent $event)
     {
         $request    = $event->getRequest();
-        $router     = $event->getRouter();
-        $routeMatch = $router->match($request);
+        $routeMatch = $event->getRouter()->match($request);
 
         if (!$request instanceof HttpRequest) {
             return;
@@ -94,13 +93,13 @@ class RateLimitRequestListener extends AbstractListenerAggregate
 
         try {
             // Check if we're within the limit
-            $this->rateLimitService->rateLimitHandler();
+            $this->rateLimitService->rateLimitHandler($routeMatch->getMatchedRouteName());
 
             // Update the response
             $response = $event->getResponse();
 
             // Add the headers to the response
-            $this->rateLimitService->ensureHeaders($response);
+            $this->ensureHeaders($response);
 
             // Set the response back
             $event->setResponse($response);
@@ -113,11 +112,26 @@ class RateLimitRequestListener extends AbstractListenerAggregate
             );
 
             // Add the headers so clients will know when they can try again
-            $this->rateLimitService->ensureHeaders($response);
+            $this->ensureHeaders($response);
 
             // And we're done here
             return $response;
         }
+    }
+
+    /**
+     * @param HttpResponse $response
+     * @return \Zend\Http\Headers
+     */
+    public function ensureHeaders(HttpResponse $response)
+    {
+        $headers = $response->getHeaders();
+
+        $headers->addHeaderLine('X-RateLimit-Limit', $this->rateLimitService->getLimit());
+        $headers->addHeaderLine('X-RateLimit-Remaining', $this->rateLimitService->getRemainingCalls());
+        $headers->addHeaderLine('X-RateLimit-Reset', $this->rateLimitService->getTimeToReset());
+
+        return $headers;
     }
 
     /**
@@ -127,13 +141,14 @@ class RateLimitRequestListener extends AbstractListenerAggregate
     private function hasRoute(RouteMatch $routeMatch)
     {
         $routes = $this->rateLimitService->getRoutes();
+        $currentRoute = $routeMatch->getMatchedRouteName();
 
         if (!$routes) {
             return false;
         }
 
         foreach ($routes as $route) {
-            if (fnmatch($route, $routeMatch->getMatchedRouteName())) {
+            if (fnmatch($route, $currentRoute)) {
                 return true;
             }
         }

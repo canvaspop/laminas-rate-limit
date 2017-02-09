@@ -39,6 +39,11 @@ class RateLimitOptions extends AbstractOptions
     protected $routes = [];
 
     /**
+     * @var array
+     */
+    protected $route_specific_limits = [];
+
+    /**
      * @var int
      */
     protected $limit = 0;
@@ -47,6 +52,17 @@ class RateLimitOptions extends AbstractOptions
      * @var int
      */
     protected $period = 0;
+
+
+    /**
+     * Constructor
+     *
+     * @param  array|Traversable|null $options
+     */
+    public function __construct($options = null)
+    {
+        parent::__construct($options);
+    }
 
     /**
      * @return string
@@ -81,6 +97,22 @@ class RateLimitOptions extends AbstractOptions
     }
 
     /**
+     * @param array $routeSpecificLimits
+     */
+    public function setRouteSpecificLimits($routeSpecificLimits)
+    {
+        $this->route_specific_limits = $routeSpecificLimits;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRouteSpecificLimits()
+    {
+        return $this->route_specific_limits;
+    }
+
+    /**
      * @return int
      */
     public function getLimit()
@@ -110,5 +142,28 @@ class RateLimitOptions extends AbstractOptions
     public function setPeriod($period)
     {
         $this->period = $period;
+    }
+
+    /**
+     * @param string $route
+     */
+    public function setRouteSpecificLimitsFromRoute($route)
+    {
+        $routeSpecificLimits = $this->getRouteSpecificLimits();
+        if (!$route OR !isset($routeSpecificLimits[$route]))
+        {
+            return;
+        }
+
+        $options = $routeSpecificLimits[$route];
+
+        if (!is_array($options) AND !$options instanceof Traversable)
+        {
+            return;
+        }
+
+        foreach ($options as $key => $value) {
+            $this->__set($key, $value);
+        }
     }
 }

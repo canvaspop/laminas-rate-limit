@@ -55,8 +55,14 @@ class RateLimitService
     /**
      * @inheritdoc
      */
-    public function rateLimitHandler()
+    public function rateLimitHandler($route = '')
     {
+        if ($route)
+        {
+            // Override the options based on this route
+            $this->rateLimitOptions->setRouteSpecificLimitsFromRoute($route);
+        }
+
         if ($this->getRemainingCalls() == 0) {
             throw new TooManyRequestsHttpException('Too Many Requests');
         }
@@ -72,47 +78,26 @@ class RateLimitService
     }
 
     /**
-     * @param HttpResponse $response
-     * @return \Zend\Http\Headers
+     * @return int
      */
-    public function ensureHeaders(HttpResponse $response)
+    public function getLimit()
     {
-        $headers = $response->getHeaders();
-
-        $headers->addHeaderLine('X-RateLimit-Limit', $this->getLimit());
-        $headers->addHeaderLine('X-RateLimit-Remaining', $this->getRemainingCalls());
-        $headers->addHeaderLine('X-RateLimit-Reset', $this->getTimeToReset());
-
-        return $headers;
+        return $this->rateLimitOptions->getLimit();
     }
 
     /**
      * @return int
      */
-    private function getLimit()
+    public function getRemainingCalls()
     {
-        $limit = $this->rateLimitOptions->getLimit();
-        return $limit;
+        // Make sure we never go below 0 as that will trip up the headers
+        return max(0, $this->getLimit() - count($this->getDataFromStorage()));
     }
 
     /**
      * @return int
      */
-    private function getRemainingCalls()
-    {
-        // Get the data from the cache
-        $data = $this->getDataFromStorage();
-
-        $limit = $this->rateLimitOptions->getLimit();
-        $calls = count($data);
-
-        return $limit - $calls;
-    }
-
-    /**
-     * @return int
-     */
-    private function getTimeToReset()
+    public function getTimeToReset()
     {
         // Get the data from the cache
         $data = $this->getDataFromStorage();
