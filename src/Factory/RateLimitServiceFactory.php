@@ -16,14 +16,14 @@
  * and is licensed under the MIT license.
  */
 
-namespace Belazor\Zf2RateLimit\Factory;
+namespace Belazor\RateLimit\Factory;
 
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Cache\StorageFactory;
-use Belazor\Zf2RateLimit\Service\RateLimitService;
-use Belazor\Zf2RateLimit\Options\RateLimitOptions;
+use Belazor\RateLimit\Service\RateLimitService;
+use Belazor\RateLimit\Options\RateLimitOptions;
 use RuntimeException;
 
 /**

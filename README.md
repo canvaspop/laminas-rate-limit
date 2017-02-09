@@ -1,7 +1,7 @@
-# Zf2RateLimit
+# RateLimit
 
-A Zend Framework 2 module that helps you to deal with rate limit.
+A Zend Framework module that helps you to deal with rate limit.
 
 ## License
 
-Zf2RateLimit is licensed under [The MIT License (MIT)](LICENSE).
+RateLimit is licensed under [The MIT License (MIT)](LICENSE).

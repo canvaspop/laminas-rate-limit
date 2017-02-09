@@ -16,10 +16,10 @@
  * and is licensed under the MIT license.
  */
 
-namespace Belazor\Zf2RateLimit\Mvc;
+namespace Belazor\RateLimit\Mvc;
 
-use Belazor\Zf2RateLimit\Exception\TooManyRequestsHttpException;
-use Belazor\Zf2RateLimit\Service\RateLimitService;
+use Belazor\RateLimit\Exception\TooManyRequestsHttpException;
+use Belazor\RateLimit\Service\RateLimitService;
 use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventManagerInterface;
 use Zend\Mvc\MvcEvent;

@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace Belazor\Zf2RateLimit\Options;
+namespace Belazor\RateLimit\Options;
 
 use Zend\Stdlib\AbstractOptions;
 

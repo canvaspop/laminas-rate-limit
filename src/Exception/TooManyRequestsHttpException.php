@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace Belazor\Zf2RateLimit\Exception;
+namespace Belazor\RateLimit\Exception;
 
 use RuntimeException;
 

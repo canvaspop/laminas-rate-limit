@@ -16,13 +16,13 @@
  * and is licensed under the MIT license.
  */
 
-namespace Belazor\Zf2RateLimit\Service;
+namespace Belazor\RateLimit\Service;
 
-use Belazor\Zf2RateLimit\Options\RateLimitOptions;
+use Belazor\RateLimit\Options\RateLimitOptions;
 use Zend\Cache\Storage\Adapter\AbstractAdapter;
 use Zend\Http\Response as HttpResponse;
 use Zend\Http\PhpEnvironment\RemoteAddress;
-use Belazor\Zf2RateLimit\Exception\TooManyRequestsHttpException;
+use Belazor\RateLimit\Exception\TooManyRequestsHttpException;
 
 /**
  * RateLimitService

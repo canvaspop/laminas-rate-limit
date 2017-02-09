@@ -16,12 +16,12 @@
  * and is licensed under the MIT license.
  */
 
-namespace Belazor\Zf2RateLimit;
+namespace Belazor\RateLimit;
 
 use Zend\Mvc\MvcEvent;
 use Zend\EventManager\EventInterface;
 use Zend\Mvc\Application;
-use Belazor\Zf2RateLimit\Mvc\RateLimitRequestListener;
+use Belazor\RateLimit\Mvc\RateLimitRequestListener;
 
 /**
  * Module
