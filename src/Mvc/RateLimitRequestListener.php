@@ -83,6 +83,11 @@ class RateLimitRequestListener extends AbstractListenerAggregate
             return;
         }
 
+        if (!method_exists($request, 'getHeaders')) {
+            // Extra safety
+            return;
+        }
+
         if (!$routeMatch instanceof RouteMatch || !$this->hasRoute($routeMatch)) {
             return;
         }
@@ -93,7 +98,11 @@ class RateLimitRequestListener extends AbstractListenerAggregate
 
             // Update the response
             $response = $event->getResponse();
+
+            // Add the headers to the response
             $this->rateLimitService->ensureHeaders($response);
+
+            // Set the response back
             $event->setResponse($response);
 
         } catch (TooManyRequestsHttpException $exception) {
@@ -103,7 +112,7 @@ class RateLimitRequestListener extends AbstractListenerAggregate
                 new ApiProblem(429, $exception->getMessage())
             );
 
-            // Add the headers so clients will know when they can try aga
+            // Add the headers so clients will know when they can try again
             $this->rateLimitService->ensureHeaders($response);
 
             // And we're done here
