@@ -18,9 +18,9 @@ return [
         'route_specific_limits' => [],
 
         /**
-         * This should be an array compatible with Zend Cache.
+         * This should be a storage adapter service locator key compatible with Zend Cache Abstract Adapter
          */
-        'storage' => [],
+        'storage' => '',
 
         /**
          * Maximum number of requests per time period (configured below)

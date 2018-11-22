@@ -63,7 +63,7 @@ class RateLimitService
             $this->rateLimitOptions->setRouteSpecificLimitsFromRoute($route);
         }
 
-        if ($this->getRemainingCalls() == 0) {
+        if ($this->getRemainingCalls() <= 0) {
             throw new TooManyRequestsHttpException('Too Many Requests');
         }
 

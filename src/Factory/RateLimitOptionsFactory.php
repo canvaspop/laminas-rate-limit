@@ -18,7 +18,6 @@
 
 namespace Belazor\RateLimit\Factory;
 
-use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Belazor\RateLimit\Options\RateLimitOptions;
@@ -32,26 +31,15 @@ use Belazor\RateLimit\Options\RateLimitOptions;
 class RateLimitOptionsFactory implements FactoryInterface
 {
     /**
-     * {@inheritDoc}
-     *
-     * @return PluginManager
+     * @param ServiceLocatorInterface $serviceLocator
+     * @return RateLimitOptions
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
         /** @var array $config */
-        $config = $container->has('config') ? $container->get('config') : [];
+        $config = $serviceLocator->has('config') ? $serviceLocator->get('config') : [];
         $config = isset($config['rate_limit']) ? $config['rate_limit'] : [];
 
         return new RateLimitOptions($config);
-    }
-
-    /**
-     * {@inheritDoc}
-     * @return RateLimitOptions
-     */
-    public function createService(ServiceLocatorInterface $container, $name = null, $requestedName = null)
-    {
-        return $this($container, RateLimitOptions::class);
-
     }
 }

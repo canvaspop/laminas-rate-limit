@@ -18,8 +18,9 @@
 
 namespace Belazor\RateLimit;
 
-use Zend\Mvc\MvcEvent;
 use Zend\EventManager\EventInterface;
+use Zend\ModuleManager\Feature\BootstrapListenerInterface;
+use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\Mvc\Application;
 use Belazor\RateLimit\Mvc\RateLimitRequestListener;
 
@@ -27,17 +28,17 @@ use Belazor\RateLimit\Mvc\RateLimitRequestListener;
  * Module
  *
  * @license MIT
- * @author Fillip Hannisdal <fillip@dragonbyte-tech.com>
+ * @author Luiz Henrique Gomes Palácio <lhpalacio@outlook.com>
  */
-class Module
+class Module implements BootstrapListenerInterface, ConfigProviderInterface
 {
     /**
      * {@inheritDoc}
      */
-    public function onBootstrap(MvcEvent $e)
+    public function onBootstrap(EventInterface $event)
     {
         /** @var Application $application */
-        $application     = $e->getApplication();
+        $application     = $event->getTarget();
         $config          = $application->getConfig();
 
         if (!isset($config['rate_limit']['storage'])

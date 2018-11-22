@@ -18,10 +18,10 @@
 
 namespace Belazor\RateLimit\Factory;
 
-use Interop\Container\ContainerInterface;
+use Zend\Cache\Storage\Adapter\Memcached;
+use Zend\Cache\Storage\Adapter\MemcachedOptions;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\Cache\StorageFactory;
 use Belazor\RateLimit\Service\RateLimitService;
 use Belazor\RateLimit\Options\RateLimitOptions;
 use RuntimeException;
@@ -30,36 +30,32 @@ use RuntimeException;
  * RateLimitServiceFactory
  *
  * @license MIT
- * @author Fillip Hannisdal <fillip@dragonbyte-tech.com>
+ * @author  Fillip Hannisdal <fillip@dragonbyte-tech.com>
  */
 class RateLimitServiceFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
-     *
-     * @return PluginManager
-     */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
-    {
-        /* @var RateLimitOptions $rateLimitOptions */
-        $rateLimitOptions = $container->get(RateLimitOptions::class);
-
-        $storage = $rateLimitOptions->getStorage();
-
-        if (!is_array($storage) || !$cache = StorageFactory::factory($storage)) {
-            throw new RuntimeException('Unable to load storage.');
-        }
-
-        return new RateLimitService($cache, $rateLimitOptions);
-    }
-
-    /**
-     * {@inheritDoc}
      * @return RateLimitService
      */
-    public function createService(ServiceLocatorInterface $container, $name = null, $requestedName = null)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        return $this($container, RateLimitService::class);
+        /* @var RateLimitOptions $rateLimitOptions */
+        $rateLimitOptions = $serviceLocator->get(RateLimitOptions::class);
+        $config           = $serviceLocator->get('Config');
 
+        $storage = $rateLimitOptions->getStorage();
+        $cacheOptions = $config['ecommerce']['application-cache']['memcached'];
+        $cacheOptions['ttl'] = $config['rate_limit']['period'];
+
+        if ($storage === 'memcached') {
+            $storage = new Memcached(new MemcachedOptions($cacheOptions));
+        } else if (!is_string($storage) || !$serviceLocator->has($storage)) {
+            throw new RuntimeException('Unable to load storage.');
+        } else {
+            $storage = $serviceLocator->get($storage);
+        }
+
+        return new RateLimitService($storage, $rateLimitOptions);
     }
 }

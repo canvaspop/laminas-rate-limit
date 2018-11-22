@@ -1,34 +1,42 @@
 {
-    "name": "belazor/zf-rate-limit",
-    "description": "A Zend Framework 2 module that lets you define rate limits for your routes.",
-    "keywords": ["zf2", "zf3-mvc", "zend framework", "rate limit", "throttle", "API rate limit", "apigility"],
-    "homepage": "https://github.com/belazor/zf-rate-limit",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Fillip Hannisdal",
-            "email": "fillip@dragonbyte-tech.com",
-            "homepage": "https://www.dragonbyte-tech.com",
-            "role": "Developer"
-        }
-    ],
-    "extra": {
-        "zf": {
-            "module": "Belazor\\RateLimit"
-        }
-    },
-    "require": {
-        "php": ">5.6",
-        "zendframework/zend-eventmanager": "^2.4.0",
-        "zendframework/zend-http": "^2.4.0",
-        "zendframework/zend-mvc": "^2.4.0",
-        "zendframework/zend-servicemanager": "^2.4.0",
-        "zendframework/zend-cache": "^2.4.0"
-    },
-    "autoload": {
-       "psr-4": {
-           "Belazor\\RateLimit\\": "src/"
-       }
+  "name": "belazor/zf-rate-limit",
+  "description": "A Zend Framework 2 module that lets you define rate limits for your routes.",
+  "keywords": [
+    "zf2",
+    "zf3-mvc",
+    "zend framework",
+    "rate limit",
+    "throttle",
+    "API rate limit",
+    "apigility"
+  ],
+  "homepage": "https://github.com/belazor/zf-rate-limit",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Fillip Hannisdal",
+      "email": "fillip@dragonbyte-tech.com",
+      "homepage": "https://www.dragonbyte-tech.com",
+      "role": "Developer"
     }
+  ],
+  "extra": {
+    "zf": {
+      "module": "Belazor\\RateLimit"
+    }
+  },
+  "require": {
+    "php": ">5.6",
+    "zendframework/zend-eventmanager": "^2.4.0",
+    "zendframework/zend-http": "^2.4.0",
+    "zendframework/zend-mvc": "^2.4.0",
+    "zendframework/zend-servicemanager": "^2.4.0",
+    "zendframework/zend-cache": "^2.4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Belazor\\RateLimit\\": "src/"
+    }
+  }
 }

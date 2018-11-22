@@ -25,15 +25,13 @@ use Zend\EventManager\EventManagerInterface;
 use Zend\Mvc\MvcEvent;
 use Zend\Http\Response as HttpResponse;
 use Zend\Http\Request as HttpRequest;
-use Zend\Router\RouteMatch;
-use ZF\ApiProblem\ApiProblem;
-use ZF\ApiProblem\ApiProblemResponse;
+use Zend\Mvc\Router\RouteMatch;
 
 /**
  * RateLimitRequestListener
  *
  * @license MIT
- * @author Fillip Hannisdal <fillip@dragonbyte-tech.com>
+ * @author  Fillip Hannisdal <fillip@dragonbyte-tech.com>
  */
 class RateLimitRequestListener extends AbstractListenerAggregate
 {
@@ -54,7 +52,8 @@ class RateLimitRequestListener extends AbstractListenerAggregate
      * Attach to an event manager
      *
      * @param  EventManagerInterface $events
-     * @param  int $priority
+     * @param  int                   $priority
+     *
      * @return void
      */
     public function attach(EventManagerInterface $events, $priority = 1)
@@ -71,7 +70,8 @@ class RateLimitRequestListener extends AbstractListenerAggregate
      * Seeds the event with the route match on completion.
      *
      * @param  MvcEvent $event
-     * @return null|RouteMatch
+     *
+     * @return null|RouteMatch|HttpResponse
      */
     public function onRoute(MvcEvent $event)
     {
@@ -91,6 +91,10 @@ class RateLimitRequestListener extends AbstractListenerAggregate
             return;
         }
 
+        if (!$request->isPost()) {
+            return;
+        }
+
         try {
             // Check if we're within the limit
             $this->rateLimitService->rateLimitHandler($routeMatch->getMatchedRouteName());
@@ -105,11 +109,9 @@ class RateLimitRequestListener extends AbstractListenerAggregate
             $event->setResponse($response);
 
         } catch (TooManyRequestsHttpException $exception) {
-
-            // Generate a new response
-            $response = new ApiProblemResponse(
-                new ApiProblem(429, $exception->getMessage())
-            );
+            $response = new HttpResponse();
+            $response->setStatusCode(429)
+                ->setReasonPhrase($exception->getMessage());
 
             // Add the headers so clients will know when they can try again
             $this->ensureHeaders($response);
@@ -121,6 +123,7 @@ class RateLimitRequestListener extends AbstractListenerAggregate
 
     /**
      * @param HttpResponse $response
+     *
      * @return \Zend\Http\Headers
      */
     public function ensureHeaders(HttpResponse $response)
@@ -136,11 +139,12 @@ class RateLimitRequestListener extends AbstractListenerAggregate
 
     /**
      * @param RouteMatch $routeMatch
+     *
      * @return bool
      */
     private function hasRoute(RouteMatch $routeMatch)
     {
-        $routes = $this->rateLimitService->getRoutes();
+        $routes       = $this->rateLimitService->getRoutes();
         $currentRoute = $routeMatch->getMatchedRouteName();
 
         if (!$routes) {
