@@ -34,6 +34,11 @@ class RateLimitOptions extends AbstractOptions
     protected $storage = null;
 
     /**
+     * @var string
+     */
+    protected $storageConfig = null;
+
+    /**
      * @var array
      */
     protected $routes = [];
@@ -78,6 +83,22 @@ class RateLimitOptions extends AbstractOptions
     public function setStorage($storage)
     {
         $this->storage = $storage;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStorageConfig()
+    {
+        return $this->storageConfig;
+    }
+
+    /**
+     * @param string $storageConfig
+     */
+    public function setStorageConfig($storageConfig)
+    {
+        $this->storageConfig = $storageConfig;
     }
 
     /**

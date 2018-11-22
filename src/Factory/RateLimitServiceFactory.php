@@ -42,13 +42,13 @@ class RateLimitServiceFactory implements FactoryInterface
     {
         /* @var RateLimitOptions $rateLimitOptions */
         $rateLimitOptions = $serviceLocator->get(RateLimitOptions::class);
-        $config           = $serviceLocator->get('Config');
 
         $storage = $rateLimitOptions->getStorage();
-        $cacheOptions = $config['ecommerce']['application-cache']['memcached'];
-        $cacheOptions['ttl'] = $config['rate_limit']['period'];
 
         if ($storage === 'memcached') {
+            $config           = $serviceLocator->get('Config');
+            $cacheOptions = $config['rate_limit']['storage_config'];
+            $cacheOptions['ttl'] = $config['rate_limit']['period'];
             $storage = new Memcached(new MemcachedOptions($cacheOptions));
         } else if (!is_string($storage) || !$serviceLocator->has($storage)) {
             throw new RuntimeException('Unable to load storage.');

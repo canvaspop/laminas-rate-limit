@@ -23,6 +23,11 @@ return [
         'storage' => '',
 
         /**
+         * Optionally configure the storage adapter based on your own application's configuration
+         */
+        'storage_config' => [],
+
+        /**
          * Maximum number of requests per time period (configured below)
          */
         'limit' => 5,
