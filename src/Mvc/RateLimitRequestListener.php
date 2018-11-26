@@ -19,9 +19,11 @@
 namespace Belazor\RateLimit\Mvc;
 
 use Belazor\RateLimit\Exception\TooManyRequestsHttpException;
+use Belazor\RateLimit\Options\RateLimitOptions;
 use Belazor\RateLimit\Service\RateLimitService;
 use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventManagerInterface;
+use Zend\Http\PhpEnvironment\RemoteAddress;
 use Zend\Mvc\MvcEvent;
 use Zend\Http\Response as HttpResponse;
 use Zend\Http\Request as HttpRequest;
@@ -41,11 +43,17 @@ class RateLimitRequestListener extends AbstractListenerAggregate
     private $rateLimitService;
 
     /**
+     * @var RateLimitOptions
+     */
+    private $rateLimitOptions;
+
+    /**
      * @param RateLimitService $rateLimitService
      */
-    public function __construct(RateLimitService $rateLimitService)
+    public function __construct(RateLimitService $rateLimitService, RateLimitOptions $rateLimitOptions)
     {
         $this->rateLimitService = $rateLimitService;
+        $this->rateLimitOptions = $rateLimitOptions;
     }
 
     /**
@@ -92,6 +100,13 @@ class RateLimitRequestListener extends AbstractListenerAggregate
         }
 
         if (!$request->isPost()) {
+            return;
+        }
+
+        $remote = new RemoteAddress();
+        $remoteAddress = $remote->setUseProxy()->getIpAddress();
+
+        if (in_array($remoteAddress, $this->rateLimitOptions->getWhitelistedIps())) {
             return;
         }
 

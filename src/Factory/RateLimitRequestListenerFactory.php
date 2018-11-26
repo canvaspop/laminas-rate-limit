@@ -18,6 +18,7 @@
 
 namespace Belazor\RateLimit\Factory;
 
+use Belazor\RateLimit\Options\RateLimitOptions;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Belazor\RateLimit\Mvc\RateLimitRequestListener;
@@ -39,8 +40,8 @@ class RateLimitRequestListenerFactory implements FactoryInterface
     {
         /** @var RateLimitService $rateLimitService */
         $rateLimitService = $serviceLocator->get(RateLimitService::class);
+        $rateLimitOptions = $serviceLocator->get(RateLimitOptions::class);
 
-        return new RateLimitRequestListener($rateLimitService);
+        return new RateLimitRequestListener($rateLimitService, $rateLimitOptions);
     }
 }
-

@@ -49,6 +49,11 @@ class RateLimitOptions extends AbstractOptions
     protected $route_specific_limits = [];
 
     /**
+     * @var array
+     */
+    protected $whitelistedIps = [];
+
+    /**
      * @var int
      */
     protected $limit = 0;
@@ -57,7 +62,6 @@ class RateLimitOptions extends AbstractOptions
      * @var int
      */
     protected $period = 0;
-
 
     /**
      * Constructor
@@ -68,6 +72,7 @@ class RateLimitOptions extends AbstractOptions
     {
         parent::__construct($options);
     }
+
 
     /**
      * @return string
@@ -163,6 +168,22 @@ class RateLimitOptions extends AbstractOptions
     public function setPeriod($period)
     {
         $this->period = $period;
+    }
+
+    /**
+     * @return array
+     */
+    public function getWhitelistedIps(): array
+    {
+        return $this->whitelistedIps;
+    }
+
+    /**
+     * @param array $whitelistedIps
+     */
+    public function setWhitelistedIps(array $whitelistedIps): void
+    {
+        $this->whitelistedIps = $whitelistedIps;
     }
 
     /**

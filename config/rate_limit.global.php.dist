@@ -18,6 +18,11 @@ return [
         'route_specific_limits' => [],
 
         /**
+         * Whitelist IPs here to prevent throttling unintentional attempts from inside a zone
+         */
+        'whitelisted_ips' => [],
+
+        /**
          * This should be a storage adapter service locator key compatible with Zend Cache Abstract Adapter
          */
         'storage' => '',
