@@ -27,12 +27,12 @@
     }
   },
   "require": {
-    "php": ">5.6",
-    "zendframework/zend-eventmanager": "^2.4.0",
-    "zendframework/zend-http": "^2.4.0",
-    "zendframework/zend-mvc": "^2.4.0",
-    "zendframework/zend-servicemanager": "^2.4.0",
-    "zendframework/zend-cache": "^2.4.0"
+    "php": "^7.1",
+    "zendframework/zend-eventmanager": "2.6.* || 3.2.*",
+    "zendframework/zend-http": "2.7.* || 2.9.*",
+    "zendframework/zend-mvc": "2.7.* || 3.1.*",
+    "zendframework/zend-servicemanager": "2.7.* || 3.3.*",
+    "zendframework/zend-cache": "2.7.* || 2.8.*"
   },
   "autoload": {
     "psr-4": {

@@ -66,7 +66,7 @@ class RateLimitOptions extends AbstractOptions
     /**
      * Constructor
      *
-     * @param  array|Traversable|null $options
+     * @param  array|\Traversable|null $options
      */
     public function __construct($options = null)
     {
@@ -199,7 +199,7 @@ class RateLimitOptions extends AbstractOptions
 
         $options = $routeSpecificLimits[$route];
 
-        if (!is_array($options) AND !$options instanceof Traversable)
+        if (!is_array($options) AND !$options instanceof \Traversable)
         {
             return;
         }

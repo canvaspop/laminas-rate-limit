@@ -18,26 +18,38 @@
 
 namespace Belazor\RateLimit\Factory;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Interop\Container\ContainerInterface;
+use Interop\Container\Exception\ContainerException;
+use Zend\ServiceManager\Exception\ServiceNotCreatedException;
+use Zend\ServiceManager\Exception\ServiceNotFoundException;
+use Zend\ServiceManager\Factory\FactoryInterface;
 use Belazor\RateLimit\Options\RateLimitOptions;
 
 /**
  * RateLimitOptionsFactory
  *
  * @license MIT
- * @author Fillip Hannisdal <fillip@dragonbyte-tech.com>
+ * @author  Fillip Hannisdal <fillip@dragonbyte-tech.com>
  */
 class RateLimitOptionsFactory implements FactoryInterface
 {
     /**
-     * @param ServiceLocatorInterface $serviceLocator
+     * Create an object
+     *
+     * @param ContainerInterface $container
+     * @param string             $requestedName
+     * @param null|array         $options
+     *
      * @return RateLimitOptions
+     * @throws ServiceNotFoundException if unable to resolve the service.
+     * @throws ServiceNotCreatedException if an exception is raised when
+     *     creating a service.
+     * @throws ContainerException if any other error occurs
      */
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         /** @var array $config */
-        $config = $serviceLocator->has('config') ? $serviceLocator->get('config') : [];
+        $config = $container->has('config') ? $container->get('config') : [];
         $config = isset($config['rate_limit']) ? $config['rate_limit'] : [];
 
         return new RateLimitOptions($config);

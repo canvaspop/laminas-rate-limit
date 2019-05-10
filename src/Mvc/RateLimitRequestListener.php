@@ -27,7 +27,7 @@ use Zend\Http\PhpEnvironment\RemoteAddress;
 use Zend\Mvc\MvcEvent;
 use Zend\Http\Response as HttpResponse;
 use Zend\Http\Request as HttpRequest;
-use Zend\Mvc\Router\RouteMatch;
+use Zend\Router\RouteMatch;
 
 /**
  * RateLimitRequestListener

@@ -20,7 +20,6 @@ namespace Belazor\RateLimit\Service;
 
 use Belazor\RateLimit\Options\RateLimitOptions;
 use Zend\Cache\Storage\Adapter\AbstractAdapter;
-use Zend\Http\Response as HttpResponse;
 use Zend\Http\PhpEnvironment\RemoteAddress;
 use Belazor\RateLimit\Exception\TooManyRequestsHttpException;
 
@@ -43,7 +42,7 @@ class RateLimitService
     private $rateLimitOptions;
 
     /**
-     * @param StorageInterface $storage
+     * @param AbstractAdapter $storage
      * @param RateLimitOptions $rateLimitOptions
      */
     public function __construct(AbstractAdapter $storage, RateLimitOptions $rateLimitOptions)
