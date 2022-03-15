@@ -20,11 +20,11 @@ namespace Belazor\RateLimit\Factory;
 
 use Interop\Container\ContainerInterface;
 use Interop\Container\Exception\ContainerException;
-use Zend\Cache\Storage\Adapter\Memcached;
-use Zend\Cache\Storage\Adapter\MemcachedOptions;
-use Zend\ServiceManager\Exception\ServiceNotCreatedException;
-use Zend\ServiceManager\Exception\ServiceNotFoundException;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\Cache\Storage\Adapter\Memcached;
+use Laminas\Cache\Storage\Adapter\MemcachedOptions;
+use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
+use Laminas\ServiceManager\Exception\ServiceNotFoundException;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Belazor\RateLimit\Service\RateLimitService;
 use Belazor\RateLimit\Options\RateLimitOptions;
 use RuntimeException;

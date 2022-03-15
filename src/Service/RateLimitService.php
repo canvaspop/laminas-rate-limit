@@ -19,8 +19,8 @@
 namespace Belazor\RateLimit\Service;
 
 use Belazor\RateLimit\Options\RateLimitOptions;
-use Zend\Cache\Storage\Adapter\AbstractAdapter;
-use Zend\Http\PhpEnvironment\RemoteAddress;
+use Laminas\Cache\Storage\Adapter\AbstractAdapter;
+use Laminas\Http\PhpEnvironment\RemoteAddress;
 use Belazor\RateLimit\Exception\TooManyRequestsHttpException;
 
 /**

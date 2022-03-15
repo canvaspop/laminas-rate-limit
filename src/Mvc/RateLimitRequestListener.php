@@ -21,13 +21,13 @@ namespace Belazor\RateLimit\Mvc;
 use Belazor\RateLimit\Exception\TooManyRequestsHttpException;
 use Belazor\RateLimit\Options\RateLimitOptions;
 use Belazor\RateLimit\Service\RateLimitService;
-use Zend\EventManager\AbstractListenerAggregate;
-use Zend\EventManager\EventManagerInterface;
-use Zend\Http\PhpEnvironment\RemoteAddress;
-use Zend\Mvc\MvcEvent;
-use Zend\Http\Response as HttpResponse;
-use Zend\Http\Request as HttpRequest;
-use Zend\Router\RouteMatch;
+use Laminas\EventManager\AbstractListenerAggregate;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\Http\PhpEnvironment\RemoteAddress;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Http\Response as HttpResponse;
+use Laminas\Http\Request as HttpRequest;
+use Laminas\Router\RouteMatch;
 
 /**
  * RateLimitRequestListener
@@ -139,7 +139,7 @@ class RateLimitRequestListener extends AbstractListenerAggregate
     /**
      * @param HttpResponse $response
      *
-     * @return \Zend\Http\Headers
+     * @return \Laminas\Http\Headers
      */
     public function ensureHeaders(HttpResponse $response)
     {
