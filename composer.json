@@ -26,21 +26,6 @@
       "module": "Belazor\\RateLimit"
     }
   },
-  "replace": {
-    "laminas/laminas-cache-storage-adapter-apc": "1.*",
-    "laminas/laminas-cache-storage-adapter-apcu": "1.*",
-    "laminas/laminas-cache-storage-adapter-blackhole": "1.*",
-    "laminas/laminas-cache-storage-adapter-dba": "1.*",
-    "laminas/laminas-cache-storage-adapter-ext-mongodb": "1.*",
-    "laminas/laminas-cache-storage-adapter-filesystem": "1.*",
-    "laminas/laminas-cache-storage-adapter-memcache": "1.*",
-    "laminas/laminas-cache-storage-adapter-mongodb": "1.*",
-    "laminas/laminas-cache-storage-adapter-redis": "1.*",
-    "laminas/laminas-cache-storage-adapter-session": "1.*",
-    "laminas/laminas-cache-storage-adapter-wincache": "1.*",
-    "laminas/laminas-cache-storage-adapter-xcache": "1.*",
-    "laminas/laminas-cache-storage-adapter-zend-server": "1.*"
-  },
   "require": {
     "php": "^8.1",
     "laminas/laminas-eventmanager": "3.4.*",
