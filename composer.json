@@ -1,10 +1,8 @@
 {
   "name": "belazor/zf-rate-limit",
-  "description": "A Zend Framework 2 module that lets you define rate limits for your routes.",
+  "description": "A Laminas module that lets you define rate limits for your routes.",
   "keywords": [
-    "zf2",
-    "zf3-mvc",
-    "zend framework",
+    "laminas",
     "rate limit",
     "throttle",
     "API rate limit",
@@ -27,14 +25,14 @@
     }
   },
   "require": {
-    "php": "^8.1",
-    "laminas/laminas-eventmanager": "3.4.*",
-    "laminas/laminas-cache-storage-adapter-memory": "2.0.*",
-    "laminas/laminas-cache-storage-adapter-memcached": "2.0.*",
-    "laminas/laminas-http": "2.15.*",
-    "laminas/laminas-mvc": "3.3.*",
-    "laminas/laminas-servicemanager": "3.10.*",
-    "laminas/laminas-cache": "^3.1.0"
+    "php": "^8.2",
+    "laminas/laminas-eventmanager": "^3.4",
+    "laminas/laminas-cache-storage-adapter-memory": "^2.0",
+    "laminas/laminas-cache-storage-adapter-memcached": "^2.0",
+    "laminas/laminas-http": "^2.15",
+    "laminas/laminas-mvc": "^3.3",
+    "laminas/laminas-servicemanager": "^3.10",
+    "laminas/laminas-cache": "^3.1"
   },
   "autoload": {
     "psr-4": {
