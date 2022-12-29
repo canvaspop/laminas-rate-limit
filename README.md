@@ -1,6 +1,6 @@
 # RateLimit
 
-A Zend Framework module that helps you to deal with rate limit.
+A Laminas module that helps you to deal with rate limit.
 
 ## License
 
